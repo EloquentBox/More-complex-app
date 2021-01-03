@@ -11,9 +11,13 @@ exports.logout = () => {
 exports.register = (req, res) => {
     let user = new User(req.body);
     user.register();
-    res.send('thanks for trying ');
-}
+    if(user.errors.length) {
+        res.send(user.errors);
+    } else {
+        res.send('Congrats, there are no errors');
+    }
+};
 
 exports.home = (req, res) => {
     res.render('home-guest');
-}
+};
